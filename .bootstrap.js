@@ -77,15 +77,7 @@ function updateWranglerJsonc() {
 }
 
 function runSetupCommands() {
-    const commands = [
-    "bun add pdfjs-dist@^4.4.178",
-    "bun add file-saver@^2.0.5",
-    "bun add @types/file-saver@^2.0.7",
-    "bun install pdfjs-dist file-saver",
-    "bun install @types/file-saver -D",
-    "bun install react-dropzone",
-    "bun add jszip"
-];
+    const commands = [];
     
     if (commands.length === 0) {
         console.log('⊘ No setup commands to run');
