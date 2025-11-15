@@ -4,7 +4,7 @@
  */
  {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "aura-convert-a7xbaosobpa0ttgk3c5n6",
+	"name": "convert-pdf2img",
 	"main": "worker/index.ts",
 	"compatibility_date": "2025-04-24",
 	"assets": {
