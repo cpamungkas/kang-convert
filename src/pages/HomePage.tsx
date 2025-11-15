@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { FileUpload } from '@/components/FileUpload';
 import { usePdfConverter } from '@/hooks/usePdfConverter';
@@ -10,12 +11,13 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Download, FileWarning, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Download, FileWarning, Loader2, Image as ImageIcon, Archive } from 'lucide-react';
 import { Toaster, toast } from '@/components/ui/sonner';
 type ImageFormat = 'image/png' | 'image/jpeg';
 export function HomePage() {
   const [file, setFile] = useState<File | null>(null);
   const [format, setFormat] = useState<ImageFormat>('image/png');
+  const [isZipping, setIsZipping] = useState(false);
   const { isLoading, error, convertedImages, convertPdf, reset } = usePdfConverter();
   const handleConvert = () => {
     if (file) {
@@ -33,6 +35,27 @@ export function HomePage() {
     const fileName = `${file?.name.replace('.pdf', '') || 'page'}_${pageNumber}.${extension}`;
     saveAs(blob, fileName);
     toast.success(`Page ${pageNumber} downloaded successfully!`);
+  };
+  const handleDownloadAll = async () => {
+    if (convertedImages.length === 0) return;
+    setIsZipping(true);
+    toast.info('Creating ZIP file, please wait...');
+    try {
+      const zip = new JSZip();
+      const extension = format === 'image/png' ? 'png' : 'jpg';
+      const baseFileName = file?.name.replace('.pdf', '') || 'image';
+      convertedImages.forEach(({ blob, pageNumber }) => {
+        zip.file(`${baseFileName}_${pageNumber}.${extension}`, blob);
+      });
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      saveAs(zipBlob, `${baseFileName}.zip`);
+      toast.success('ZIP file downloaded successfully!');
+    } catch (err) {
+      console.error('Zipping Error:', err);
+      toast.error('Failed to create ZIP file.');
+    } finally {
+      setIsZipping(false);
+    }
   };
   return (
     <AppLayout>
@@ -107,7 +130,21 @@ export function HomePage() {
                       exit={{ opacity: 0, y: -20 }}
                       className="space-y-4"
                     >
-                      <h3 className="text-lg font-semibold text-foreground">Results</h3>
+                      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                        <h3 className="text-lg font-semibold text-foreground">
+                          Results {convertedImages.length > 0 && `(${convertedImages.length} images)`}
+                        </h3>
+                        {!isLoading && convertedImages.length > 0 && (
+                          <Button onClick={handleDownloadAll} disabled={isZipping} variant="outline" size="sm">
+                            {isZipping ? (
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            ) : (
+                              <Archive className="mr-2 h-4 w-4" />
+                            )}
+                            Download All (.zip)
+                          </Button>
+                        )}
+                      </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {isLoading &&
                           Array.from({ length: 3 }).map((_, index) => (
@@ -142,6 +179,9 @@ export function HomePage() {
                 </AnimatePresence>
               </CardContent>
             </Card>
+            <footer className="text-center mt-12 text-sm text-muted-foreground">
+              Built with ❤️ at Cloudflare
+            </footer>
           </div>
         </div>
       </div>
