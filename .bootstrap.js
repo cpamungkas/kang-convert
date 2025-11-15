@@ -83,7 +83,8 @@ function runSetupCommands() {
     "bun add @types/file-saver@^2.0.7",
     "bun install pdfjs-dist file-saver",
     "bun install @types/file-saver -D",
-    "bun install react-dropzone"
+    "bun install react-dropzone",
+    "bun add jszip"
 ];
     
     if (commands.length === 0) {
