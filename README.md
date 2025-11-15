@@ -1,10 +1,10 @@
-# Kang Convert
+# Aura Convert
 
 A sleek, in-memory PDF to image converter that respects user privacy by processing files entirely in the browser.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cpamungkas/kang-convert)
 
-Kang Convert is a minimalist, high-performance web application designed for converting PDF documents into high-quality JPG or PNG images. The core principle is privacy and speed: all file processing happens directly in the user's browser using the robust `pdfjs-dist` library, powered by WebAssembly. No files are ever uploaded to a server, ensuring complete data confidentiality and eliminating server-side processing costs.
+Aura Convert is a minimalist, high-performance web application designed for converting PDF documents into high-quality JPG or PNG images. The core principle is privacy and speed: all file processing happens directly in the user's browser using the robust `pdfjs-dist` library, powered by WebAssembly. No files are ever uploaded to a server, ensuring complete data confidentiality and eliminating server-side processing costs.
 
 The application is a single-page app (SPA) running entirely on the client-side, making it exceptionally fast and perfect for deployment on modern edge networks like Cloudflare.
 
@@ -42,7 +42,7 @@ Follow these instructions to get a local copy up and running for development and
 1.  **Clone the repository:**
     ```sh
     git clone https://github.com/your-username/kang-convert.git
-    cd kang-convert
+    cd aura-convert
     ```
 
 2.  **Install dependencies:**
