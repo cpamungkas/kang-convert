@@ -84,7 +84,8 @@ function runSetupCommands() {
     "bun install pdfjs-dist file-saver",
     "bun install @types/file-saver -D",
     "bun install react-dropzone",
-    "bun add jszip"
+    "bun add jszip",
+    "bun add vite-plugin-static-copy"
 ];
     
     if (commands.length === 0) {
