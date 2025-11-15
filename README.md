@@ -2,7 +2,7 @@
 
 A sleek, in-memory PDF to image converter that respects user privacy by processing files entirely in the browser.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cpamungkas/kang-convert)
 
 Aura Convert is a minimalist, high-performance web application designed for converting PDF documents into high-quality JPG or PNG images. The core principle is privacy and speed: all file processing happens directly in the user's browser using the robust `pdfjs-dist` library, powered by WebAssembly. No files are ever uploaded to a server, ensuring complete data confidentiality and eliminating server-side processing costs.
 
@@ -83,7 +83,7 @@ This application is optimized for deployment on serverless platforms like Cloudf
 
 You can deploy this project to your own Cloudflare account with a single click.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cpamungkas/kang-convert)
 
 ### Manual Deployment with Wrangler
 
