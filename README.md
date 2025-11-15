@@ -1,4 +1,4 @@
-# Aura Convert
+# Kang Convert
 
 A sleek, in-memory PDF to image converter that respects user privacy by processing files entirely in the browser.
 
