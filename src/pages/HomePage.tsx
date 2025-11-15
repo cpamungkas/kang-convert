@@ -64,7 +64,7 @@ export function HomePage() {
           <div className="py-16 md:py-24">
             <header className="text-center mb-12">
               <h1 className="font-display text-5xl md:text-6xl font-bold tracking-tight text-foreground">
-                Aura Convert
+                Kang Convert
               </h1>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                 A sleek, in-memory PDF to image converter that respects user privacy by processing files entirely in your browser.
