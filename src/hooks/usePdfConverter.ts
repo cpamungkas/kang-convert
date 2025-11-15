@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import * as pdfjsLib from 'pdfjs-dist';
+import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 type ImageFormat = 'image/png' | 'image/jpeg';
 interface ConversionResult {
